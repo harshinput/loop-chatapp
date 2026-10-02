@@ -4,17 +4,16 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "build": "rm -rf dist && cp -R src dist",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-<<<<<<< HEAD
     "@clerk/express": "^2.1.74",
-=======
->>>>>>> 4c0d932600e046ffd508b7c85dc83b01fb530389
     "cors": "^2.8.6",
     "dotenv": "^18.0.4",
     "express": "^5.2.1",
