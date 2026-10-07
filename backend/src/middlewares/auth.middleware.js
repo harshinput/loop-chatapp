@@ -1,7 +1,7 @@
 import { getAuth } from "@clerk/express";
 import User from "../models/user.model.js";
 
-export const protectRoute = async (req, res, next) => {
+export const verifyUser = async (req, res, next) => {
   try {
     const { userId } = getAuth(req);
     if (!userId) {
