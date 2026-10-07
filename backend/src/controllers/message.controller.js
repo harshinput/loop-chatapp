@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import { exportChatMedia, hasImageKitConfig } from "../lib/imagekit.js";
+import { getReceiverSocketId } from "../lib/socket.js";
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -119,7 +120,12 @@ export const sendMessage = async (req, res) => {
 
     await newMessage.save();
 
-    // socket.io code here
+    // socket.io code
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    // only send the message to the receiver if they are online
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {
