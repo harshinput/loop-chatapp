@@ -10,4 +10,7 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
   ],
+  build: {
+    chunkSizeWarningLimit: 1600, // Raises the limit to 1.6MB (or higher if needed)
+  },
 });
